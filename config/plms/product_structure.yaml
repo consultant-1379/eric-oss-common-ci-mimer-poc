@@ -1,0 +1,79 @@
+#
+# COPYRIGHT Ericsson 2024
+#
+#
+#
+# The copyright to the computer program(s) herein is the property of
+#
+# Ericsson Inc. The programs may be used and/or copied only with written
+#
+# permission from Ericsson Inc. or in accordance with the terms and
+#
+# conditions stipulated in the agreement/contract under which the
+#
+# program(s) have been supplied.
+#
+
+modelVersion: "2.0"
+
+flavor: "Generic"
+service:
+  # Name of the service
+  name: "NM Common CI Mimer Poc"
+  # Design Country (set on the source products)
+  design_countries:
+    - IE
+  # Compilation Country (Set on the derivative products)
+  sw_compilation_country: SE
+  # Release responsible
+  release_responsible: BCSSJAFF
+  # Design responsible
+  design_responsible: BCSSJAFF
+
+  # APR Product
+  top_product:
+    alias: ["eric-oss-common-ci-mimer-poc"]
+    # APR Product Number
+    number: APR 201 0240
+    description: "NM Common Ci Mimer Poc"
+    # Includes
+    includes:
+      # SUSE Licenses
+      - prim: 1/FAL 115 3215
+        rstate: R1A
+      - prim: 3/FAL 115 3215
+        rstate: R1A
+      - prim: 5/FAL 115 3215
+        rstate: R1A
+      - prim: 7/FAL 115 3215
+        rstate: R1A
+
+  # Source Product
+  src_products:
+    - label: Source
+      number: CAV 101 1507
+
+  derivative_products:
+    # HELM Product
+    - label: "HELM"
+      number: "CXD 101 1249"
+      alias: ["eric-oss-common-ci-mimer-poc"]
+      derivedFrom:
+        munin: CAV 101 1507
+    # IMAGE Product
+    - label: "IMAGE"
+      number: "CXU 101 2737"
+      description: "NM Common Ci Mimer Poc"
+      includes:
+        # Common Base OS
+        - munin: CXC 201 2032
+          version: SUSE_IMAGE_VERSION
+          secondPartyProduct: "True"
+        # Common Base OS Repo
+        - munin: CXC 201 2031
+          version: SUSE_IMAGE_VERSION
+          secondPartyProduct: "True"
+      uses_foss:
+        - dependencies_file: ../../generated/dependencies/dependencies-3pp.yaml
+      derivedFrom:
+        munin: CAV 101 1507
